@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+
+
+-<edmx:DataServices m:DataServiceVersion="2.0">
+
+
+-<Schema xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="0000" Namespace="ZNOTIFICATION_DEMO_SRV">
+
+
+-<EntityType sap:content-version="1" Name="Equipment">
+
+
+-<Key>
+
+<PropertyRef Name="EquipmentID"/>
+
+</Key>
+
+<Property Name="EquipmentID" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Equipment" MaxLength="18" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Descript" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Description" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Equicatgry" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="EquipCategory" MaxLength="1" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Planplant" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Planning plant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Maintplant" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="MaintPlant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Plangroup" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Planner group" MaxLength="3" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Sortfield" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Sort field" MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Searchstring" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="30 Characters" MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="UserName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="User Name" MaxLength="12" Nullable="false" Type="Edm.String"/>
+
+<Property Name="FullName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="FULL_NAME" Nullable="false" Type="Edm.String"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" Name="FunctionalLoc">
+
+
+-<Key>
+
+<PropertyRef Name="Functlocation"/>
+
+</Key>
+
+<Property Name="Functlocation" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Functional loc." MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Descript" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Description" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Supfloc" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="SupFunctLoc." MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Planplant" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Planning plant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Maintplant" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="MaintPlant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Plangroup" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Planner group" MaxLength="3" Nullable="false" Type="Edm.String"/>
+
+<Property Name="UserName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="User Name" MaxLength="12" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Equipment" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Equipment" MaxLength="18" Nullable="false" Type="Edm.String"/>
+
+<Property Name="FullName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="FULL_NAME" Nullable="false" Type="Edm.String"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" Name="Plant">
+
+
+-<Key>
+
+<PropertyRef Name="Werks"/>
+
+</Key>
+
+<Property Name="Werks" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Plant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Name1" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Name 1" MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<NavigationProperty Name="PlantToRequests" ToRole="ToRole_PlantToMaintRequest" FromRole="FromRole_PlantToMaintRequest" Relationship="ZNOTIFICATION_DEMO_SRV.PlantToMaintRequest"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" Name="MaintRequest">
+
+
+-<Key>
+
+<PropertyRef Name="NotificationNo"/>
+
+</Key>
+
+<Property Name="NotificationNo" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Notification" MaxLength="12" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Equipment" sap:filterable="false" sap:sortable="false" sap:label="Equipment" MaxLength="18" Type="Edm.String"/>
+
+<Property Name="FunctionalLocID" sap:filterable="false" sap:sortable="false" sap:label="Functional loc." MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="MaintPlant" sap:filterable="false" sap:sortable="false" sap:label="MaintPlant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="PlanPlant" sap:filterable="false" sap:sortable="false" sap:label="Planning plant" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="PlanGroup" sap:filterable="false" sap:sortable="false" sap:label="Planner group" MaxLength="3" Nullable="false" Type="Edm.String"/>
+
+<Property Name="ShortText" sap:filterable="false" sap:sortable="false" sap:label="Description" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+<Property Name="LongText" sap:filterable="false" sap:sortable="false" sap:label="char256" MaxLength="256" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Priority" sap:filterable="false" sap:sortable="false" sap:label="Priority" MaxLength="1" Nullable="false" Type="Edm.String"/>
+
+<Property Name="ReportedBy" sap:filterable="false" sap:sortable="false" sap:label="Reported by" MaxLength="12" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Breakdown" sap:filterable="false" sap:sortable="false" sap:label="Breakdown" MaxLength="1" Nullable="false" Type="Edm.String"/>
+
+<Property Name="MalfunctionStartTimestamp" sap:filterable="false" sap:sortable="false" sap:label="Time Stamp" Type="Edm.DateTime" Precision="7"/>
+
+<Property Name="SearchString" sap:filterable="false" sap:sortable="false" sap:label="30 Characters" MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="Coding" sap:filterable="false" sap:sortable="false" sap:label="Coding" MaxLength="4" Nullable="false" Type="Edm.String"/>
+
+<Property Name="UserStatus" sap:filterable="false" sap:sortable="false" sap:label="User status" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+<Property Name="UserStatusText" sap:filterable="false" sap:sortable="false" sap:label="Status" MaxLength="30" Nullable="false" Type="Edm.String"/>
+
+<Property Name="AllowApprove" sap:filterable="false" sap:sortable="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" MaxLength="1" Nullable="false" Type="Edm.String"/>
+
+<Property Name="CreatedBy" sap:filterable="false" sap:sortable="false" sap:label="Created by" MaxLength="12" Nullable="false" Type="Edm.String"/>
+
+<Property Name="CreatedOnTimestamp" sap:filterable="false" sap:sortable="false" sap:label="Time Stamp" Type="Edm.DateTime" Precision="7"/>
+
+<Property Name="EquipmentText" sap:filterable="false" sap:sortable="false" sap:label="Description" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+<Property Name="FunctionalLocText" sap:filterable="false" sap:sortable="false" sap:label="Description" MaxLength="40" Nullable="false" Type="Edm.String"/>
+
+</EntityType>
+
+
+-<Association sap:content-version="1" Name="PlantToMaintRequest" sap:label="AssocPlantToMaintRequest">
+
+<End Type="ZNOTIFICATION_DEMO_SRV.Plant" Role="FromRole_PlantToMaintRequest" Multiplicity="1"/>
+
+<End Type="ZNOTIFICATION_DEMO_SRV.MaintRequest" Role="ToRole_PlantToMaintRequest" Multiplicity="*"/>
+
+
+-<ReferentialConstraint>
+
+
+-<Principal Role="FromRole_PlantToMaintRequest">
+
+<PropertyRef Name="Werks"/>
+
+</Principal>
+
+
+-<Dependent Role="ToRole_PlantToMaintRequest">
+
+<PropertyRef Name="MaintPlant"/>
+
+</Dependent>
+
+</ReferentialConstraint>
+
+</Association>
+
+
+-<EntityContainer Name="ZNOTIFICATION_DEMO_SRV_Entities" m:IsDefaultEntityContainer="true">
+
+<EntitySet sap:content-version="1" Name="FunctionalLocSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZNOTIFICATION_DEMO_SRV.FunctionalLoc"/>
+
+<EntitySet sap:content-version="1" Name="PlantSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZNOTIFICATION_DEMO_SRV.Plant"/>
+
+<EntitySet sap:content-version="1" Name="MaintRequestSet" sap:pageable="false" sap:deletable="false" EntityType="ZNOTIFICATION_DEMO_SRV.MaintRequest"/>
+
+<EntitySet sap:content-version="1" Name="EquipmentSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZNOTIFICATION_DEMO_SRV.Equipment"/>
+
+
+-<AssociationSet sap:content-version="1" Name="PlantToMaintRequestSet" sap:updatable="false" sap:creatable="false" sap:label="AssocSetPlantToMaintRequestSet" sap:deletable="false" Association="ZNOTIFICATION_DEMO_SRV.PlantToMaintRequest">
+
+<End Role="FromRole_PlantToMaintRequest" EntitySet="PlantSet"/>
+
+<End Role="ToRole_PlantToMaintRequest" EntitySet="MaintRequestSet"/>
+
+</AssociationSet>
+
+</EntityContainer>
+
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://demo1.mindsetconsulting.com/sap/opu/odata/sap/ZNOTIFICATION_DEMO_SRV/$metadata" rel="self"/>
+
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://demo1.mindsetconsulting.com/sap/opu/odata/sap/ZNOTIFICATION_DEMO_SRV/$metadata" rel="latest-version"/>
+
+</Schema>
+
+</edmx:DataServices>
+
+</edmx:Edmx>

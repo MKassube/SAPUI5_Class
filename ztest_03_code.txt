@@ -1,0 +1,19 @@
+  method MEDICALDOCUMENTS_GET_ENTITY.
+    er_entity-appointment_date = '20161212'.
+    er_entity-bill_amount = 1000.
+    er_entity-diagnosis = 'DEAD'.
+    er_entity-doctor_name = 'Zhivago'.
+    er_entity-patient_id = 123456.
+  endmethod.
+
+  method MEDICALDOCUMENTS_GET_ENTITYSET.
+    DATA ls_entityset LIKE LINE OF et_entityset.
+
+    ls_entityset-appointment_date = '20161212'.
+    ls_entityset-bill_amount = 1000.
+    ls_entityset-diagnosis = 'DEAD'.
+    ls_entityset-doctor_name = 'Zhivago'.
+    ls_entityset-patient_id = 123456.
+
+    APPEND ls_entityset TO et_entityset.
+  endmethod.

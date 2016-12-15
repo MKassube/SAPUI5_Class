@@ -1,0 +1,74 @@
+ METHOD salesheaderset_get_entity.
+    DATA lv_vbeln TYPE vbak-vbeln.
+
+    READ TABLE it_key_tab INTO DATA(ls_key_tab) with key name = 'Vbeln'.
+    IF sy-subrc IS INITIAL.
+      lv_vbeln = ls_key_tab-value.
+    ENDIF.
+
+    SELECT SINGLE mandt vbeln ernam vbtyp auart vkorg vtweg spart ktext
+      FROM vbak INTO CORRESPONDING FIELDS OF er_entity
+     WHERE vbeln = lv_vbeln.
+
+  ENDMETHOD.
+
+METHOD salesheaderset_get_entityset.
+    DATA lt_ernam_rng TYPE RANGE OF vbak-ernam.
+    DATA lt_vbtyp_rng TYPE RANGE OF vbak-vbtyp.
+    DATA ls_ernam_rng LIKE LINE OF lt_ernam_rng.
+    DATA ls_vbtyp_rng LIKE LINE OF lt_vbtyp_rng.
+
+    LOOP AT it_filter_select_options INTO DATA(ls_filter_select_options).
+      CASE ls_filter_select_options-property.
+        WHEN 'Ernam'.
+          LOOP AT ls_filter_select_options-select_options INTO DATA(ls_select_option_ernam).
+            MOVE-CORRESPONDING ls_select_option_ernam TO ls_ernam_rng.
+            APPEND ls_ernam_rng TO lt_ernam_rng.
+          ENDLOOP.
+        WHEN 'Vbtyp'.
+          LOOP AT ls_filter_select_options-select_options INTO DATA(ls_select_option_vbtyp).
+            MOVE-CORRESPONDING ls_select_option_vbtyp TO ls_vbtyp_rng.
+            APPEND ls_vbtyp_rng TO lt_vbtyp_rng.
+          ENDLOOP.
+      ENDCASE.
+    ENDLOOP.
+
+    SELECT mandt vbeln ernam vbtyp auart vkorg vtweg spart ktext
+      FROM vbak INTO CORRESPONDING FIELDS OF TABLE et_entityset
+     WHERE ernam IN lt_ernam_rng
+       AND vbtyp IN lt_vbtyp_rng.
+
+
+  ENDMETHOD.
+
+METHOD salesitemset_get_entityset.
+
+    DATA lv_vbeln TYPE vbap-vbeln.
+    DATA lt_vbeln_rng TYPE RANGE OF vbap-vbeln.
+    DATA ls_vbeln_rng LIKE LINE OF lt_vbeln_rng.
+
+    LOOP AT it_filter_select_options INTO DATA(ls_filter_select_options).
+      CASE ls_filter_select_options-property.
+        WHEN 'Vbeln'.
+          LOOP AT ls_filter_select_options-select_options INTO DATA(ls_select_option).
+            MOVE-CORRESPONDING ls_select_option TO ls_vbeln_rng.
+            APPEND ls_vbeln_rng TO lt_vbeln_rng.
+          ENDLOOP.
+      ENDCASE.
+    ENDLOOP.
+
+    READ TABLE it_key_tab INTO DATA(ls_key_tab) WITH KEY name = 'Vbeln'.
+    IF sy-subrc IS INITIAL.
+      ls_vbeln_rng-sign = 'I'.
+      ls_vbeln_rng-option = 'EQ'.
+      ls_vbeln_rng-low = ls_key_tab-value.
+      APPEND ls_vbeln_rng TO lt_vbeln_rng.
+    ENDIF.
+
+    SELECT mandt vbeln posnr matnr matwa charg matkl arktx pstyv
+      FROM vbap INTO CORRESPONDING FIELDS OF TABLE et_entityset
+      WHERE vbeln IN lt_vbeln_rng.
+
+
+
+  ENDMETHOD.
